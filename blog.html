@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | TGFC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/tgfc-logo.png" alt="TGFC Logo" class="nav-logo-img">
+        <div class="nav-logo-text">
+          Third Generation
+          <span class="subtitle">Food Company</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="offers.html">Offers</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="about.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Blog</div>
+      <h1>Blog</h1>
+      <p>Industry insights, company news, and updates from the TGFC team.</p>
+    </div>
+  </section>
+
+  <!-- Blog Posts -->
+  <section class="section">
+    <div class="container">
+      <div class="blog-grid" id="blog-grid">
+        <div class="blog-card">
+          <div class="blog-card-img">
+            <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=700&h=400&fit=crop" alt="Retail grocery report">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">February 2026 &bull; Market Data</div>
+            <h3>Retail Grocery Report &mdash; February 2026</h3>
+            <p>Latest average U.S. retail prices from the Bureau of Labor Statistics.</p>
+            <table class="price-table">
+              <tr><th>Item</th><th>Price</th><th>Change</th></tr>
+              <tr><td>Eggs (Grade A, Large), per dozen</td><td>$4.17</td><td class="up">&#9650; $0.01</td></tr>
+              <tr><td>Chicken (whole), per lb</td><td>$6.87</td><td class="up">&#9650; $0.05</td></tr>
+              <tr><td>Ground Beef (100%), per lb</td><td>$4.43</td><td class="up">&#9650; $0.12</td></tr>
+              <tr><td>Bacon (sliced), per lb</td><td>$3.43</td><td class="up">&#9650; $0.05</td></tr>
+              <tr><td>Milk (whole), per gallon</td><td>$3.38</td><td class="down">&#9660; $0.09</td></tr>
+              <tr><td>Ground Chuck (100%), per lb</td><td>$4.15</td><td class="down">&#9660; $0.15</td></tr>
+            </table>
+            <div class="blog-updated">Updated: February 25, 2026</div>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-img usda-logo-bg">
+            <img src="images/usda-market-news.png" alt="USDA Market News">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">February 2026 &bull; Industry</div>
+            <h3>USDA Market Outlook &mdash; February 2026</h3>
+            <p>Prices trending upward across most protein categories this month. Beef and eggs lead increases while dairy shows some relief.</p>
+            <div class="report-links">
+              <h4>National Weekly Retail Activity Reports</h4>
+              <a href="https://www.ams.usda.gov/mnreports/ams_3228.pdf" target="_blank" class="report-link">Beef (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2756.pdf" target="_blank" class="report-link">Chicken (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/dybretail.pdf" target="_blank" class="report-link">Dairy (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2757.pdf" target="_blank" class="report-link">Eggs (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2868.pdf" target="_blank" class="report-link">Pork (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2867.pdf" target="_blank" class="report-link">Turkey (pdf)</a>
+            </div>
+            <div class="blog-updated">Updated: February 25, 2026</div>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-card-img stcroix-logo-bg">
+            <img src="images/stcroix-logo.png" alt="St. Croix Meats">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-meta">January 2026 &bull; Company News</div>
+            <h3>New Co-Packing Partnership with St. Croix Meats</h3>
+            <p>TGFC is proud to announce a new co-packing partnership with St. Croix Meats, a trusted meat processing partner with decades of industry experience. SCM offers premium quality products and flexible solutions across food service, institutional, government, and military sectors. This partnership expands our proprietary product capabilities with custom grinding, portioning, slicing, and dicing services.</p>
+            <div class="blog-updated">Updated: January 15, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h3>Stay Updated</h3>
+      <p>Get new posts and offers delivered to your inbox.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">TGFC</div>
+            <div class="nav-logo-text">
+              Third Generation
+              <span>Food Company</span>
+            </div>
+          </a>
+          <p>Three generations of expertise in the food industry. Quality, service, and value in every deal.</p>
+        </div>
+        <div>
+          <h4>Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="tel:833-328-8432">833-328-8432</a></li>
+            <li><a href="mailto:mitch@thetgfc.com">mitch@thetgfc.com</a></li>
+            <li>Inver Grove Heights, MN</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="LinkedIn">LI</a>
+            <a href="#" aria-label="Instagram">IG</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Third Generation Food Company. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
