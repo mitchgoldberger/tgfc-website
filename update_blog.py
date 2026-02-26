@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Fetch BLS retail food price data and write blog cards directly into blog.html."""
 
+import json
+import os
 import re
 import requests
 from datetime import datetime
@@ -15,7 +17,9 @@ SERIES = {
 }
 
 BLS_URL = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
-BLOG_PATH = "/Users/mitchellgoldberger/tgfc-website/blog.html"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BLOG_PATH = os.path.join(SCRIPT_DIR, "blog.html")
+JSON_PATH = os.path.join(SCRIPT_DIR, "blog-data.json")
 
 
 def fetch_bls_prices():
@@ -63,12 +67,62 @@ def build_price_table(prices):
 {rows}            </table>"""
 
 
+def update_json(prices, now, week_of):
+    ups = sum(1 for p in prices if p["change"] and p["change"] > 0)
+    downs = sum(1 for p in prices if p["change"] and p["change"] < 0)
+    if ups > downs:
+        trend = "Prices trending upward across most protein categories."
+    elif downs > ups:
+        trend = "Prices easing across several key categories."
+    else:
+        trend = "Mixed signals across protein and dairy categories."
+
+    summary_parts = []
+    for p in prices[:4]:
+        arrow = "\u25b2" if p["change"] and p["change"] > 0 else "\u25bc"
+        summary_parts.append(f'{p["item"]}: ${p["price"]:.2f} {arrow} ${abs(p["change"] or 0):.2f}')
+
+    json_data = [
+        {
+            "id": 1,
+            "title": f"Retail Grocery Report \u2014 {now}",
+            "meta": f"{now} \u2022 Market Data",
+            "summary": " | ".join(summary_parts),
+            "image": "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=700&h=400&fit=crop",
+            "prices": [
+                {"item": p["item"], "price": f'${p["price"]:.2f}', "month": now, "change": p["change"]}
+                for p in prices
+            ],
+            "updated": week_of,
+        },
+        {
+            "id": 2,
+            "title": f"USDA Market Outlook \u2014 {now}",
+            "meta": f"{now} \u2022 Industry",
+            "summary": trend,
+            "image": "images/usda-market-news.png",
+            "updated": week_of,
+        },
+        {
+            "id": 3,
+            "title": "New Co-Packing Partnership with St. Croix Meats",
+            "meta": "January 2026 \u2022 Company News",
+            "summary": "TGFC is proud to announce a new co-packing partnership with St. Croix Meats.",
+            "image": "images/stcroix-logo.png",
+            "updated": "January 15, 2026",
+        },
+    ]
+
+    with open(JSON_PATH, "w") as f:
+        json.dump(json_data, f, indent=2)
+
+
 def build_blog_cards():
     prices = fetch_bls_prices()
     now = datetime.now().strftime("%B %Y")
     week_of = datetime.now().strftime("%B %d, %Y")
 
-    # Trend for box 2
+    # Trend text for Box 2
     if prices:
         ups = sum(1 for p in prices if p["change"] and p["change"] > 0)
         downs = sum(1 for p in prices if p["change"] and p["change"] < 0)
@@ -96,24 +150,33 @@ def build_blog_cards():
           </div>
         </div>
         <div class="blog-card">
-          <div class="blog-card-img">
+          <div class="blog-card-img usda-logo-bg">
             <img src="images/usda-market-news.png" alt="USDA Market News">
           </div>
           <div class="blog-card-body">
             <div class="blog-meta">{now} &bull; Industry</div>
             <h3>USDA Market Outlook &mdash; {now}</h3>
             <p>{trend}</p>
+            <div class="report-links">
+              <h4>National Weekly Retail Activity Reports</h4>
+              <a href="https://www.ams.usda.gov/mnreports/ams_3228.pdf" target="_blank" class="report-link">Beef (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2756.pdf" target="_blank" class="report-link">Chicken (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/dybretail.pdf" target="_blank" class="report-link">Dairy (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2757.pdf" target="_blank" class="report-link">Eggs (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2868.pdf" target="_blank" class="report-link">Pork (pdf)</a>
+              <a href="https://www.ams.usda.gov/mnreports/ams_2867.pdf" target="_blank" class="report-link">Turkey (pdf)</a>
+            </div>
             <div class="blog-updated">Updated: {week_of}</div>
           </div>
         </div>
         <div class="blog-card">
-          <div class="blog-card-img">
-            <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=700&h=400&fit=crop" alt="Company news">
+          <div class="blog-card-img stcroix-logo-bg">
+            <img src="images/stcroix-logo.png" alt="St. Croix Meats">
           </div>
           <div class="blog-card-body">
             <div class="blog-meta">January 2026 &bull; Company News</div>
-            <h3>New Co-Packing Partnership Announced</h3>
-            <p>We're excited to announce a new partnership expanding our proprietary product capabilities.</p>
+            <h3>New Co-Packing Partnership with St. Croix Meats</h3>
+            <p>TGFC is proud to announce a new co-packing partnership with St. Croix Meats, a trusted meat processing partner with decades of industry experience. SCM offers premium quality products and flexible solutions across food service, institutional, government, and military sectors. This partnership expands our proprietary product capabilities with custom grinding, portioning, slicing, and dicing services.</p>
             <div class="blog-updated">Updated: January 15, 2026</div>
           </div>
         </div>"""
@@ -129,10 +192,14 @@ def build_blog_cards():
     with open(BLOG_PATH, "w") as f:
         f.write(new_html)
 
+    # Update JSON snapshot
+    if prices:
+        update_json(prices, now, week_of)
+
     print(f"Updated {BLOG_PATH}")
     print(f"  Box 1: Retail Grocery Report — {now}")
     print(f"  Box 2: USDA Market Outlook — {now}")
-    print(f"  Box 3: Company News")
+    print(f"  Box 3: St. Croix Meats Partnership")
 
 
 if __name__ == "__main__":

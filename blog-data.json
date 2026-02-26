@@ -9,56 +9,56 @@
       {
         "item": "Eggs (Grade A, Large), per dozen",
         "price": "$4.17",
-        "month": "January 2026",
+        "month": "February 2026",
         "change": 0.01
       },
       {
         "item": "Chicken (whole), per lb",
         "price": "$6.87",
-        "month": "January 2026",
+        "month": "February 2026",
         "change": 0.05
       },
       {
         "item": "Ground Beef (100%), per lb",
         "price": "$4.43",
-        "month": "January 2026",
+        "month": "February 2026",
         "change": 0.12
       },
       {
         "item": "Bacon (sliced), per lb",
         "price": "$3.43",
-        "month": "January 2026",
+        "month": "February 2026",
         "change": 0.05
       },
       {
         "item": "Milk (whole), per gallon",
         "price": "$3.38",
-        "month": "January 2026",
+        "month": "February 2026",
         "change": -0.09
       },
       {
         "item": "Ground Chuck (100%), per lb",
         "price": "$4.15",
-        "month": "January 2026",
+        "month": "February 2026",
         "change": -0.15
       }
     ],
-    "updated": "February 25, 2026"
+    "updated": "February 26, 2026"
   },
   {
     "id": 2,
     "title": "USDA Market Outlook \u2014 February 2026",
     "meta": "February 2026 \u2022 Industry",
     "summary": "Prices trending upward across most protein categories.",
-    "image": "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=700&h=400&fit=crop",
-    "updated": "February 25, 2026"
+    "image": "images/usda-market-news.png",
+    "updated": "February 26, 2026"
   },
   {
     "id": 3,
-    "title": "New Co-Packing Partnership Announced",
+    "title": "New Co-Packing Partnership with St. Croix Meats",
     "meta": "January 2026 \u2022 Company News",
-    "summary": "We're excited to announce a new partnership expanding our proprietary product capabilities.",
-    "image": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=700&h=400&fit=crop",
+    "summary": "TGFC is proud to announce a new co-packing partnership with St. Croix Meats.",
+    "image": "images/stcroix-logo.png",
     "updated": "January 15, 2026"
   }
 ]
