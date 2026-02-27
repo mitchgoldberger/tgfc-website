@@ -406,23 +406,12 @@ p {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 45%;
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  width: 38%;
   overflow: hidden;
   z-index: 3;
 }
 
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-image::after {
-  display: none;
-}
-
-/* Hero mural - animated montage */
+/* Hero mural */
 .hero-mural {
   display: flex;
   flex-direction: column;
@@ -437,27 +426,11 @@ p {
 }
 
 .hero-mural .montage-row img {
-  width: 150px;
-  height: 125px;
+  flex: 1;
+  height: 110px;
   object-fit: cover;
   object-position: center;
   border-radius: 3px;
-}
-
-.hero-mural img:nth-child(1) { animation-delay: 0s; }
-.hero-mural img:nth-child(2) { animation-delay: 1.3s; }
-.hero-mural img:nth-child(3) { animation-delay: 2.6s; }
-.hero-mural img:nth-child(4) { animation-delay: 3.9s; }
-.hero-mural img:nth-child(5) { animation-delay: 5.2s; }
-.hero-mural img:nth-child(6) { animation-delay: 6.5s; }
-.hero-mural img:nth-child(7) { animation-delay: 7.8s; }
-.hero-mural img:nth-child(8) { animation-delay: 9.1s; }
-.hero-mural img:nth-child(9) { animation-delay: 10.4s; }
-
-@keyframes muralPulse {
-  0%, 100% { filter: brightness(0.85); }
-  15% { filter: brightness(1.1); }
-  30% { filter: brightness(0.85); }
 }
 
 /* Product Montage */
@@ -481,9 +454,6 @@ p {
 @media (max-width: 768px) {
   .hero-image {
     display: none;
-  }
-  .montage-row img {
-    height: 120px;
   }
   .hero-stats {
     gap: 30px;
